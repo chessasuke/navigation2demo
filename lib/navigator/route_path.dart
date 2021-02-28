@@ -23,9 +23,10 @@ class TheAppPath {
 
   bool get isDetailsPage => id != null;
 
-  bool get isHomePage => id == null && isUnknown == false;
-
   bool get isUnknownPage => isUnknown;
 
   bool get isSettingsPage => isSettings;
+
+  bool get isHomePage =>
+      id == null && isUnknown == false && isSettings == false;
 }

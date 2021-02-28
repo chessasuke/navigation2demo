@@ -19,8 +19,6 @@ class TheAppRouteInformationParser extends RouteInformationParser<TheAppPath> {
   @override
   Future<TheAppPath> parseRouteInformation(
       RouteInformation routeInformation) async {
-    print('inside parseRouteInformation');
-
     final uri = Uri.parse(routeInformation.location);
 
     /// Handle '/'
@@ -50,8 +48,6 @@ class TheAppRouteInformationParser extends RouteInformationParser<TheAppPath> {
 
   @override
   RouteInformation restoreRouteInformation(TheAppPath path) {
-    print('inside restoreRouteInformation');
-
     if (path.isUnknown) {
       return RouteInformation(location: '/404');
     }

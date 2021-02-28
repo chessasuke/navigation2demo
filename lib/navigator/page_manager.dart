@@ -53,9 +53,6 @@ class PageManager extends ChangeNotifier {
 
   /// This is where we handle new route information and manage the pages list
   Future<void> setNewRoutePath(TheAppPath configuration) async {
-    print(
-        'configuration.id: ${configuration.id} \n configuration.isSettings: ${configuration.isSettings} \n configuration.isHomePage: ${configuration.isHomePage}');
-
     if (configuration.isUnknown) {
       // Handling 404
       _pages.add(
@@ -97,12 +94,9 @@ class PageManager extends ChangeNotifier {
 
   void addSettings() {
     setNewRoutePath(TheAppPath.settings());
-    print(_pages);
   }
 
   void addDetailsBelow() {
-    print(_pages.length);
-
     _pages.insert(
       _pages.length - 1,
       MaterialPage(
