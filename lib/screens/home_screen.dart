@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:navigation2demo/model/item_model.dart';
 import 'package:navigation2demo/navigator/page_manager.dart';
+import '../custom_appbar.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key key}) : super(key: key);
-//  final ValueChanged<String> onTapped;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: CustomAppBar(),
       body: Column(
         children: [
           Padding(

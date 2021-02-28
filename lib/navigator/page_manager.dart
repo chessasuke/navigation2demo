@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:navigation2demo/navigator/route_path.dart';
 import 'package:navigation2demo/screens/detail_screen.dart';
 import 'package:navigation2demo/screens/home_screen.dart';
+import 'package:navigation2demo/screens/settings_screen.dart';
 import 'package:navigation2demo/screens/testing_screen.dart';
 import 'package:navigation2demo/screens/unknown_screen.dart';
 import 'package:provider/provider.dart';
@@ -52,6 +53,9 @@ class PageManager extends ChangeNotifier {
 
   /// This is where we handle new route information and manage the pages list
   Future<void> setNewRoutePath(TheAppPath configuration) async {
+    print(
+        'configuration.id: ${configuration.id} \n configuration.isSettings: ${configuration.isSettings} \n configuration.isHomePage: ${configuration.isHomePage}');
+
     if (configuration.isUnknown) {
       // Handling 404
       _pages.add(
@@ -75,6 +79,13 @@ class PageManager extends ChangeNotifier {
       _pages.removeWhere(
         (element) => element.key != const Key('HomeScreen'),
       );
+    } else if (configuration.isSettings) {
+      // Restoring to MainScreen
+      _pages.add(MaterialPage(
+        child: SettingsScreen(),
+        key: UniqueKey(),
+        name: '/settings',
+      ));
     }
     notifyListeners();
     return;
@@ -82,6 +93,11 @@ class PageManager extends ChangeNotifier {
 
   void handleOnTapped(String itemID) {
     setNewRoutePath(TheAppPath.details(itemID));
+  }
+
+  void addSettings() {
+    setNewRoutePath(TheAppPath.settings());
+    print(_pages);
   }
 
   void addDetailsBelow() {

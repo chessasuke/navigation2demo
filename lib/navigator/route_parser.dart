@@ -13,12 +13,14 @@ import 'route_path.dart';
 /// RouteInformationParser to produce a configuration of type T.
 ///
 
-class BookRouteInformationParser extends RouteInformationParser<TheAppPath> {
+class TheAppRouteInformationParser extends RouteInformationParser<TheAppPath> {
   /// call when there is a change to the URL in the browser
   /// converts the url into a navigation state
   @override
   Future<TheAppPath> parseRouteInformation(
       RouteInformation routeInformation) async {
+    print('inside parseRouteInformation');
+
     final uri = Uri.parse(routeInformation.location);
 
     /// Handle '/'
@@ -34,25 +36,34 @@ class BookRouteInformationParser extends RouteInformationParser<TheAppPath> {
       return TheAppPath.details(remaining);
     }
 
+    /// Handle '/settings'
+    if (uri.pathSegments.length == 1) {
+      if (uri.pathSegments[0] != 'settings')
+        return TheAppPath.settings();
+      else
+        return TheAppPath.unknown();
+    }
+
     /// Handle unknown routes
     return TheAppPath.unknown();
   }
 
   @override
   RouteInformation restoreRouteInformation(TheAppPath path) {
-    if (path.isUnknown) {
-      print('path is unknown');
+    print('inside restoreRouteInformation');
 
+    if (path.isUnknown) {
       return RouteInformation(location: '/404');
     }
     if (path.isHomePage) {
-      print('path is home');
       return RouteInformation(location: '/');
     }
 
-    if (path.isDetailsPage) {
-      print('path is details');
+    if (path.isSettings) {
+      return RouteInformation(location: '/settings');
+    }
 
+    if (path.isDetailsPage) {
       return RouteInformation(location: '/book/${path.id}');
     }
     return null;

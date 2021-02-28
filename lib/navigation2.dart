@@ -13,8 +13,8 @@ class Navigation2Demo extends StatefulWidget {
 
 class _Navigation2DemoState extends State<Navigation2Demo> {
   TheAppRouterDelegate _routerDelegate = TheAppRouterDelegate();
-  BookRouteInformationParser _routeInformationParser =
-      BookRouteInformationParser();
+  TheAppRouteInformationParser _routeInformationParser =
+      TheAppRouteInformationParser();
 
   @override
   Widget build(BuildContext context) {

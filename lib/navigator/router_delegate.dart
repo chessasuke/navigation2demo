@@ -11,6 +11,7 @@ import 'route_path.dart';
 /// The router delegate receives the configuration through setInitialRoutePath or setNewRoutePath
 /// to configure itself and builds the latest navigating widget when asked (build).
 ///
+/// In this example we are using pageManager to further organize out code and have more flexibility
 
 class TheAppRouterDelegate extends RouterDelegate<TheAppPath>
     with ChangeNotifier, PopNavigatorRouterDelegateMixin<TheAppPath> {

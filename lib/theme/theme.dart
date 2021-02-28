@@ -61,6 +61,7 @@ class AppDynamicTheme extends ChangeNotifier {
     primarySwatch: Colors.blueGrey,
     backgroundColor: Colors.white.withOpacity(0.35),
     appBarTheme: AppBarTheme(
+        iconTheme: IconThemeData(color: isDark ? Colors.white : Colors.black),
         color: Colors.white,
         shadowColor: Colors.grey,
         brightness: Brightness.light,
