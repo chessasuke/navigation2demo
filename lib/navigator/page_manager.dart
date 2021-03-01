@@ -27,19 +27,26 @@ class PageManager extends ChangeNotifier {
     ];
   }
 
+  /// Handles updating the current path (last page)
   TheAppPath get currentPath {
     Uri uri = Uri.parse(_pages.last.name);
-    // Handle '/'
+
+    /// Handle '/'
     if (uri.pathSegments.isEmpty) {
       return TheAppPath.home();
     }
 
-    // Handle '/details/:id'
+    /// Handle '/details/:id'
     if (uri.pathSegments.length == 2) {
       if (uri.pathSegments[0] != 'details') return TheAppPath.unknown();
       var id = uri.pathSegments[1];
       if (id == null) return TheAppPath.unknown();
       return TheAppPath.details(id);
+    }
+
+    if (uri.pathSegments.length == 1) {
+      if (uri.pathSegments[0] != 'settings') return TheAppPath.unknown();
+      return TheAppPath.settings();
     }
 
     // Handle unknown routes

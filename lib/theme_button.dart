@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:navigation2demo/theme/theme.dart';
 
 class ToggleBrightness extends StatelessWidget {
@@ -7,7 +8,9 @@ class ToggleBrightness extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       icon: Icon(
-        Icons.brightness_6_outlined,
+        Theme.of(context).brightness == Brightness.dark
+            ? FontAwesomeIcons.solidSun
+            : FontAwesomeIcons.solidMoon,
         color: Theme.of(context).brightness == Brightness.dark
             ? Colors.white
             : Colors.black,

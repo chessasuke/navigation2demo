@@ -13,7 +13,8 @@ class TheAppPath {
         isSettings = false;
 
   TheAppPath.settings()
-      : isUnknown = false,
+      : id = null,
+        isUnknown = false,
         isSettings = true;
 
   TheAppPath.unknown()
@@ -23,9 +24,9 @@ class TheAppPath {
 
   bool get isDetailsPage => id != null;
 
-  bool get isUnknownPage => isUnknown;
+  bool get isUnknownPage => isUnknown == true && isSettings == false;
 
-  bool get isSettingsPage => isSettings;
+  bool get isSettingsPage => isSettings == true && isUnknown == false;
 
   bool get isHomePage =>
       id == null && isUnknown == false && isSettings == false;

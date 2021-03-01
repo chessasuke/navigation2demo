@@ -26,9 +26,9 @@ class TheAppRouteInformationParser extends RouteInformationParser<TheAppPath> {
       return TheAppPath.home();
     }
 
-    /// Handle '/book/:id'
+    /// Handle '/item/:id'
     if (uri.pathSegments.length == 2) {
-      if (uri.pathSegments[0] != 'book') return TheAppPath.unknown();
+      if (uri.pathSegments[0] != 'item') return TheAppPath.unknown();
       var remaining = uri.pathSegments[1];
       if (remaining == null) return TheAppPath.unknown();
       return TheAppPath.details(remaining);
@@ -36,7 +36,8 @@ class TheAppRouteInformationParser extends RouteInformationParser<TheAppPath> {
 
     /// Handle '/settings'
     if (uri.pathSegments.length == 1) {
-      if (uri.pathSegments[0] != 'settings')
+      print(uri.pathSegments[0]);
+      if (uri.pathSegments[0] == 'settings')
         return TheAppPath.settings();
       else
         return TheAppPath.unknown();
@@ -48,19 +49,19 @@ class TheAppRouteInformationParser extends RouteInformationParser<TheAppPath> {
 
   @override
   RouteInformation restoreRouteInformation(TheAppPath path) {
-    if (path.isUnknown) {
-      return RouteInformation(location: '/404');
+    if (path.isUnknownPage) {
+      return RouteInformation(location: '/unknown');
     }
     if (path.isHomePage) {
       return RouteInformation(location: '/');
     }
 
-    if (path.isSettings) {
+    if (path.isSettingsPage) {
       return RouteInformation(location: '/settings');
     }
 
     if (path.isDetailsPage) {
-      return RouteInformation(location: '/book/${path.id}');
+      return RouteInformation(location: '/item/${path.id}');
     }
     return null;
   }
