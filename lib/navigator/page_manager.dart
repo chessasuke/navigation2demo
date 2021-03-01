@@ -45,8 +45,11 @@ class PageManager extends ChangeNotifier {
     }
 
     if (uri.pathSegments.length == 1) {
-      if (uri.pathSegments[0] != 'settings') return TheAppPath.unknown();
-      return TheAppPath.settings();
+      if (uri.pathSegments[0] == 'settings')
+        return TheAppPath.settings();
+      else if (uri.pathSegments[0] == 'testing') return TheAppPath.testing();
+
+      return TheAppPath.unknown();
     }
 
     // Handle unknown routes
@@ -60,6 +63,17 @@ class PageManager extends ChangeNotifier {
 
   /// This is where we handle new route information and manage the pages list
   Future<void> setNewRoutePath(TheAppPath configuration) async {
+//    print('---------------------------------------------');
+//    print('configuration.id: ${configuration.id} ');
+//    print('configuration.isSettingsPage: ${configuration.isSettingsPage}');
+//    print('configuration.isHomePage: ${configuration.isHomePage}');
+//    print('configuration.isDetailsPage: ${configuration.isDetailsPage}');
+//    print('configuration.isUnknownPage: ${configuration.isUnknownPage}');
+//    print('VARIABLES');
+//    print('configuration.isSettings: ${configuration.isSettings}');
+//    print('configuration.isUnknown: ${configuration.isUnknown}');
+//    print('---------------------------------------------');
+
     if (configuration.isUnknown) {
       // Handling 404
       _pages.add(
@@ -84,6 +98,7 @@ class PageManager extends ChangeNotifier {
         (element) => element.key != const Key('HomeScreen'),
       );
     } else if (configuration.isSettings) {
+      print('adding settings');
       // Restoring to MainScreen
       _pages.add(MaterialPage(
         child: SettingsScreen(),

@@ -59,6 +59,8 @@ class TheAppRouterDelegate extends RouterDelegate<TheAppPath>
 
   @override
   Future<void> setNewRoutePath(TheAppPath configuration) async {
+    print('isSettingsPage in setNew..()');
+    print(configuration.isSettingsPage);
     await pageManager.setNewRoutePath(configuration);
   }
 }

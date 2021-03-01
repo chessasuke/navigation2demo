@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:navigation2demo/theme_button.dart';
-
 import 'navigator/page_manager.dart';
 
 class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
@@ -15,7 +15,10 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
       actions: [
         ToggleBrightness(),
         IconButton(
-            icon: Icon(Icons.settings, color: Theme.of(context).hintColor),
+            icon: Icon(FontAwesomeIcons.cog,
+                color: Theme.of(context).brightness == Brightness.dark
+                    ? Colors.white
+                    : Colors.black),
             onPressed: () {
               PageManager.of(context).addSettings();
             })

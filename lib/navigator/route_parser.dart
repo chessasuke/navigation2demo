@@ -39,6 +39,8 @@ class TheAppRouteInformationParser extends RouteInformationParser<TheAppPath> {
       print(uri.pathSegments[0]);
       if (uri.pathSegments[0] == 'settings')
         return TheAppPath.settings();
+      else if (uri.pathSegments[0] == 'testing')
+        return TheAppPath.testing();
       else
         return TheAppPath.unknown();
     }
@@ -58,6 +60,10 @@ class TheAppRouteInformationParser extends RouteInformationParser<TheAppPath> {
 
     if (path.isSettingsPage) {
       return RouteInformation(location: '/settings');
+    }
+
+    if (path.isTestingPage) {
+      return RouteInformation(location: '/testing');
     }
 
     if (path.isDetailsPage) {

@@ -23,10 +23,7 @@ class DetailsScreen extends StatelessWidget {
               ? Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                        item.getName != null
-                            ? item.getName
-                            : 'Error: Null Name',
+                    Text(item.getName != null ? item.getName : 'Error',
                         style: Theme.of(context).textTheme.headline6),
                     const SizedBox(height: 20),
                     Center(
