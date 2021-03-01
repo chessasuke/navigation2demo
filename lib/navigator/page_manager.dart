@@ -118,6 +118,10 @@ class PageManager extends ChangeNotifier {
     setNewRoutePath(TheAppPath.settings());
   }
 
+  void resetToHome() {
+    setNewRoutePath(TheAppPath.home());
+  }
+
   void addDetailsBelow() {
     _pages.insert(
       _pages.length - 1,
